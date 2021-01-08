@@ -1,0 +1,54 @@
+\input{settings-all-in-one}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+\title{Concepts}
+\author{listenzcc}
+
+\begin{document}
+
+\maketitle
+
+\abstract
+Useful concepts of probability and statistics.
+
+\tableofcontents
+
+\section{Concepts}
+
+\subsection{Law of total probability}
+
+What will come may never be absent in the end.
+The difference is only how it will be happening.
+
+Thinking from the \textbf{reason} to the \textbf{result}.
+
+\begin{theorem}
+    \label{Theroem: Law of total probability}
+    Law of total probability
+
+    For random variables $A$ and $B$, we have
+    \begin{equation*}
+        P(A) = \sum {P(A|B_i) \cdot P(B_i)}, \forall B_i \in B
+    \end{equation*}
+\end{theorem}
+
+Thinking \textbf{backwardly}.
+If we have already know that $A$ only has one option (noted as $a$), which is also inevitable ($P(A=a) = 1$).
+
+\begin{proposition}
+    \label{Proposition: Sum of probability of every options is ONE}
+    Sum of probability of every options is ONE
+
+    We have $P(a) = 1$ and $P(a|B_i)=1, \forall B_i \in B$.
+    Thus,
+    \begin{equation*}
+        1 = \sum P(B_i), \forall B_i \in B
+    \end{equation*}
+
+    Since $a$ can be independent with choice of $B$, thus the proposition may not affected by the choice of $a$.
+\end{proposition}
+
+\end{document}
