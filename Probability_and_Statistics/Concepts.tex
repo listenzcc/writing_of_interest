@@ -20,10 +20,10 @@ Useful concepts of probability and statistics.
 
 \subsection{Law of total probability}
 
-What will come may never be absent in the end.
-The difference is only how it will be happening.
+It is common practice to compute the sum of total probability of all available options.
 
-Thinking from the \textbf{reason} to the \textbf{result}.
+Thinking \textbf{forwardly}.
+Which means starting from the \textbf{reason} to the \textbf{result}.
 
 \begin{theorem}
     \label{Theroem: Law of total probability}
@@ -33,10 +33,17 @@ Thinking from the \textbf{reason} to the \textbf{result}.
     \begin{equation*}
         P(A) = \sum {P(A|B_i) \cdot P(B_i)}, \forall B_i \in B
     \end{equation*}
+
+    It is automatically accepted that all the $B_i$s are all separable, and mutually exclusive with each other, which means
+    \begin{align*}
+        P(B_i, B_j) & = P(B_i) \cdot P(B_j), i \neq j \\
+        P(B_i, B_i) & = P(B_i)
+    \end{align*}
+    It is a prior rule to be accepted, and we will accept it if not specified.
 \end{theorem}
 
 Thinking \textbf{backwardly}.
-If we have already know that $A$ only has one option (noted as $a$), which is also inevitable ($P(A=a) = 1$).
+If we have already known that $A$ only has one option (noted as $a$), which is also inevitable ($P(A=a) = 1$).
 
 \begin{proposition}
     \label{Proposition: Sum of probability of every options is ONE}
@@ -48,7 +55,8 @@ If we have already know that $A$ only has one option (noted as $a$), which is al
         1 = \sum P(B_i), \forall B_i \in B
     \end{equation*}
 
-    Since $a$ can be independent with choice of $B$, thus the proposition may not affected by the choice of $a$.
+    Since $a$ can be something that naturally happens regardless of the choice of $B$, the proposition may not affected by the choice of $a$.
+    Thus, the total probability of all options of $B$ is $1$.
 \end{proposition}
 
 \end{document}
