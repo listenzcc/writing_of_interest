@@ -49,14 +49,90 @@ If we have already known that $A$ only has one option (noted as $a$), which is a
     \label{Proposition: Sum of probability of every options is ONE}
     Sum of probability of every options is ONE
 
-    We have $P(a) = 1$ and $P(a|B_i)=1, \forall B_i \in B$.
-    Thus,
-    \begin{equation*}
-        1 = \sum P(B_i), \forall B_i \in B
-    \end{equation*}
+    \begin{proof}
+        We have $P(a) = 1$ and $P(a|B_i)=1, \forall B_i \in B$.
+        Thus,
+        \begin{equation*}
+            1 = \sum P(B_i), \forall B_i \in B
+        \end{equation*}
 
-    Since $a$ can be something that naturally happens regardless of the choice of $B$, the proposition may not affected by the choice of $a$.
-    Thus, the total probability of all options of $B$ is $1$.
+        Since $a$ can be something that naturally happens regardless of the choice of $B$, the proposition may not affected by the choice of $a$.
+        Thus, the total probability of all options of $B$ is $1$.
+    \end{proof}
 \end{proposition}
 
+\subsection{Definition of $e$}
+
+The constant $e$ is defined as the infinity integral of
+\begin{equation}
+    \label{Equation: Definition of e}
+    e = \lim_{x \to \infty} (1+\frac{1}{x})^x
+\end{equation}
+the very existence of $e$ is based on the fact that integrand function is monotone bounded.
+
+\begin{proposition}
+    \label{Proposition: Monotone bounded of e}
+    The function $f(x)$ is \textbf{monotone bounded}
+    \begin{equation*}
+        f(x) = (1 + \frac{1}{x}) ^ x, x \in \mathcal{R}
+    \end{equation*}
+
+    \begin{proof}
+        Use its discrete sequence version
+        \begin{equation*}
+            g_n = (1 + \frac{1}{n}) ^ n, n \in \mathcal{N}
+        \end{equation*}
+        by expanding it, we have
+        \begin{align*}
+            g_n     & = \sum_{i=0}^n (n, i) \cdot \frac{1}{n^i}                      \\
+            g_{n+1} & = \sum_{i=0}^{n+1} (n+1, i) \cdot \frac{1}{(n+1)^i}            \\
+            g_{n+1} & = \sum_{i=0}^{n} \frac{(n+1, i)}{n+1} \cdot \frac {1}{n^i} + c
+        \end{align*}
+        where $c > 0$.
+        For every $i$, we have $\frac{(n+1, i)}{n+1} > (n, i) $.
+        Thus, the $g_n$ is \textbf{monotone increasing}.
+
+        To find a valid upper bound, we enlarge the $g_n$.
+        \begin{equation*}
+            g_n < \sum_{i=0}^{n} \frac{1}{i!}
+        \end{equation*}
+        the enlarge is based on the idea of $(n, i) < \frac{n^i}{i!}$.
+        Further,
+        \begin{equation*}
+            g_n < c + \sum_{i=4}^{n} \frac{1}{2^i}
+        \end{equation*}
+        where constant $c > 0$.
+        It uses the idea of $2^i < i!, i \geq 4$.
+        Use the sum of geometric series, we can say the $g_n$ is \textbf{upper bounded}.
+
+        Back to $f(x)$, use \textbf{Squeeze Theorem}
+        \begin{equation*}
+            (1+\frac{1}{n+1})^n < f(x) < (1+ \frac{1}{n})^{n+1}
+        \end{equation*}
+        where $n = \lfloor x \rfloor$.
+        On the left hand, it equals to $g_{n+1} / (1 + \frac{1}{n+1})$;
+        On the right hand, it equals to $g_{n} * (1 + \frac{1}{n})$.
+        Based on the analysis above, they are of the same value which is defined as $e$.
+
+        Hence proved.
+
+    \end{proof}
+
+\end{proposition}
+
+\subsection{Gamma function}
+The Gamma function is defined as
+\begin{equation}
+    \label{Equation: Gamma function}
+    \Gamma(z) = \int_0^\infty t^{z-1} e^{-t} dt, Re(z) > 0
+\end{equation}
+
+The Gamma function has useful properties
+\begin{align*}
+    \Gamma(1)           & = 1                                    \\
+    \Gamma(\frac{1}{2}) & = \sqrt{\pi}                           \\
+    \Gamma(z)           & = z \cdot \Gamma(z-1)                  \\
+    \Gamma(n)           & = n!, n \in \mathcal{N}                \\
+    \Gamma(z)           & = 2 \int_0^\infty t^{2z-1} e^{-t^2} dt
+\end{align*}
 \end{document}
