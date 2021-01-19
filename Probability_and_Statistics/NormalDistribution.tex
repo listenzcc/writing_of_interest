@@ -1,0 +1,129 @@
+\input{settings-all-in-one}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+\title{Normal Distribution}
+\author{listenzcc}
+
+\begin{document}
+
+\maketitle
+
+\abstract
+The hand book of normal distribution.
+How it is formulated, what it can predict and why we use it.
+
+\tableofcontents
+
+\section{Normal Distribution in Classic View}
+
+\subsection{Binominal Distribution}
+Perform experiment for $n$ times, we assume the trials are independent and follow the same distribution.
+The output of the experiment is noted as $1$ or $0$, with no vague.
+The probability of observing the $1$ output is noted as $p$.
+Then, we have
+\begin{equation}
+    \label{Equation: Binominal distribution}
+    P(n, m) = (n, m) \cdot p^{m} \cdot (1-p)^{n-m}
+\end{equation}
+where $m$ refers the fact that we observe $1$ output for $m$ times.
+
+It is easy to see that the $P(n, m)$ produces a distribution since
+\begin{equation*}
+    \sum_{i=0}^{n} P(n, i) = 1, i \in \mathcal{N}
+\end{equation*}
+
+Use the computation of \textbf{expectation and Variation} of the random variable, we have
+\begin{align*}
+    \mathcal{E} (m) & = n \cdot p             \\
+    \mathcal{V} (m) & = n \cdot p \cdot (1-p)
+\end{align*}
+
+\subsection{Poisson Distribution}
+The poisson distribution is the infinity binominal distribution (see \eqref{Equation: Binominal distribution}),
+when $p$ is \textbf{small} and $n$ is \textbf{large}.
+It is defined as
+\begin{equation}
+    \label{Equation: Poisson distribution}
+    P(k) = \frac{\lambda^k}{k!} \cdot e^{-\lambda}, \lambda=np
+\end{equation}
+
+\begin{proof}
+    Use the equation of $\lambda = np$, we can rewrite \eqref{Equation: Binominal distribution} as
+    \begin{equation*}
+        P(n, k) = (n, k) (\frac{\lambda}{n})^k (1-\frac{\lambda}{n})^{n-k}
+    \end{equation*}
+
+    Since $p$ is small and $n$ is large, we have $k$ is relatively small compared to $n$.
+    As a result, in infinity case,
+    \begin{align*}
+        \lim_{n \rightarrow \infty} \frac{(n, k)}{n^k}          & = \frac{1}{k!}   \\
+        \lim_{n \rightarrow \infty} (1-\frac{\lambda}{n})^{n-k} & = e ^ {-\lambda}
+    \end{align*}
+
+    Hence proved.
+\end{proof}
+
+In practice, we require $\lambda < 1$ to produce a valid approximation.
+
+To compute the expectation and variation of the poisson distribution, we use the taylor series of Exp function
+\begin{equation*}
+    e^{\lambda t} = \sum_{k=0}^{\infty} \frac{\lambda^k}{k!}, t_0 = 0
+\end{equation*}
+it naturally guarantees the property of PDF that
+\begin{equation*}
+    \sum_{k=0}^{\infty} P(k) = 1
+\end{equation*}
+
+Use the definition of the expectation, we have
+\begin{align*}
+    \mathcal{E} (k) & = \sum_{k=1}^{\infty} \frac{\lambda^k}{(k-1)!} \cdot e^{-\lambda} \\
+    \mathcal{E} (k) & = \lambda
+\end{align*}
+
+Use the definition of the variation, we have
+\begin{align*}
+    \mathcal{E} (k^2) & = \sum_{k=1}^{\infty} \frac{k \lambda^k}{(k-1)!} \cdot e^{-\lambda}         \\
+    \mathcal{E} (k^2) & = \lambda + \sum_{k=2}^{\infty} \frac{\lambda^k}{(k-2)!} \cdot e^{-\lambda} \\
+    \mathcal{E} (k^2) & = \lambda + \lambda^2
+\end{align*}
+where we used the idea of $k = 1 + (k-1)$.
+Thus, the variation is
+\begin{equation*}
+    \mathcal{V} (k) = \lambda
+\end{equation*}
+
+\subsection{Normal Distribution}
+When $n$ is large and $p$ is not so small, the poisson distribution fails on approximate the binominal distribution.
+The normal distribution is used as a more general replacement.
+
+Basically, when $n$, $np$ and $nq$ are large, the binominal distribution is well approximated by the normal distribution
+\begin{equation*}
+    p(x) = (n, x) p^x q^{n-x} \approx
+    \frac{1}{\sqrt{2 \pi n p q}}
+    e^{-(x-np)^2/2npq}
+\end{equation*}
+where $p+q=1$.
+See the website \footnote{\url{http://scipp.ucsc.edu/~haber/ph116C/NormalApprox.pdf}} for detail.
+
+And they are linked based on Sterling's formula,
+\begin{equation}
+    \label{Equation: Sterling's formula}
+    n! = n^n e^{-n} \sqrt{2 \pi n} [1 + \mathcal{O}(1/n)]
+\end{equation}
+See the website \footnote{\url{https://www.researchgate.net/publication/237571154_A_Very_Short_Proof_of_Stirling's_Formula}} for detail.
+
+Formally, the normal distribution is expressed as
+\begin{equation}
+    \label{Equation: Normal distribution}
+    p(x) = \frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{(x-\mu)^2}{2 \sigma^2}}
+\end{equation}
+where expectation $\mu = \lim_{n \rightarrow \infty} np$ and variation $\sigma^2 = \lim_{n \rightarrow \infty} npq$.
+
+\section{Family members}
+
+\section{Examples}
+
+\end{document}

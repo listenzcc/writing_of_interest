@@ -16,7 +16,7 @@ Useful concepts of probability and statistics.
 
 \tableofcontents
 
-\section{Concepts}
+\section{Laws}
 
 \subsection{Law of total probability}
 
@@ -60,6 +60,8 @@ If we have already known that $A$ only has one option (noted as $a$), which is a
         Thus, the total probability of all options of $B$ is $1$.
     \end{proof}
 \end{proposition}
+
+\section{Definitions}
 
 \subsection{Definition of $e$}
 
@@ -120,6 +122,47 @@ the very existence of $e$ is based on the fact that integrand function is monoto
 
 \end{proposition}
 
+\subsection{Gaussian integral}
+The gaussian integral is the improper integral defined as
+\begin{equation}
+    \label{Equation: Gaussian integral}
+    I = \int_{-\infty}^{\infty} e^{-x^2} dx
+\end{equation}
+and the value equals to $\sqrt{\pi}$.
+
+\begin{lemma}
+    \label{Lemma: Gaussian integral}
+    The gaussian integral equals to $\sqrt{\pi}$
+    \begin{equation*}
+        \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+    \end{equation*}
+
+    \begin{proof}
+        Use the square-shaped integral
+        \begin{equation*}
+            I^2 = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} e^{-x^2} e^{-y^2} dx dy
+        \end{equation*}
+
+        Transform into polar coordinates
+        \begin{equation*}
+            I^2 = \int_{0}^{2\pi} \int_{0}^{\infty} e^{-r^2} r dr d\theta
+        \end{equation*}
+
+        Evaluate the integral of $r$
+        \begin{equation*}
+            \int_{0}^{\infty} e^{-r^2} r dr = \frac{1}{2} \int_{0}^{\infty} e^{-u} du = \frac{1}{2}
+        \end{equation*}
+
+        Thus
+        \begin{equation*}
+            I^2 = \int_{0}^{2\pi} \frac{1}{2} d\theta = \pi
+        \end{equation*}
+
+        Hence proved.
+
+    \end{proof}
+\end{lemma}
+
 \subsection{Gamma function}
 The Gamma function is defined as
 \begin{equation}
@@ -129,10 +172,165 @@ The Gamma function is defined as
 
 The Gamma function has useful properties
 \begin{align*}
-    \Gamma(1)           & = 1                                    \\
-    \Gamma(\frac{1}{2}) & = \sqrt{\pi}                           \\
-    \Gamma(z)           & = z \cdot \Gamma(z-1)                  \\
-    \Gamma(n)           & = n!, n \in \mathcal{N}                \\
-    \Gamma(z)           & = 2 \int_0^\infty t^{2z-1} e^{-t^2} dt
+    \Gamma(1)   & = 1                                    \\
+    \Gamma(z+1) & = z \cdot \Gamma(z)                    \\
+    \Gamma(z)   & = 2 \int_0^\infty t^{2z-1} e^{-t^2} dt
 \end{align*}
+
+Based on the gaussian integral in \eqref{Equation: Gaussian integral}, we have
+\begin{equation*}
+    \Gamma(\frac{1}{2}) = \sqrt{\pi}
+\end{equation*}
+
+There are countless useful properties of Gamma function.
+The followings are from the website \footnote{\url{https://math.wikia.org/wiki/Gamma_function}}.
+
+\subsubsection{Euler's reflection formula}
+The Gamma function satisfies the reflection formula
+\begin{equation}
+    \label{Equation: Euler's reflection formula}
+    \Gamma(x) \Gamma(1-x) = \frac{\pi}{sin(x \pi)}
+\end{equation}
+
+The proof can be found in \footnote{\url{https://brilliant.org/discussions/thread/proof-of-euler-reflection-formula/}}.
+The formula can verify the value of $\Gamma(\frac{1}{2})$.
+
+\subsubsection{Euler's product representation}
+The Gamma function can be expressed as an infinite product
+\begin{equation}
+    \label{Equation: Euler's product representation}
+    \Gamma(x) = \frac{1}{x}
+    \prod_{n=1}^{\infty} (1 + \frac{1}{n}) ^ {x} (1 + \frac{x}{n})^{-1}
+\end{equation}
+
+\subsubsection{Weierstrass's product representation}
+The Gamma function can be expressed as another infinite product
+\begin{equation}
+    \label{Equation: Weierstrass's product representation}
+    \Gamma(x) = \frac{exp(-\gamma x)}{x}
+    \prod_{n=1}^{\infty} (1+\frac{x}{n})^{-1} exp(\frac{x}{n})
+\end{equation}
+where $\gamma$ denotes the Euler-Mascheroni constant
+\begin{equation}
+    \label{Equation: Euler-Mascheroni constant}
+    \gamma = \lim_{n \rightarrow \infty}
+    \sum_{k=1}^{n} \frac{1}{k} - log(n)
+\end{equation}
+This definition implies the reflection formula along with the Weierstrass product of sine and is equivalent with Euler's representation when the definition of the Euler-Mascheroni constant is substituted and rearranged.
+
+\subsubsection{Riemann's reflection formula}
+The Gamma function plays a key role in the analytic continuation of the Riemann zeta function to the complex plane
+\begin{equation}
+    \label{Equation: Riemann's reflection formula}
+    \zeta (s) = 2^s \pi^{s-1} sin(\frac{\pi s}{2}) \Gamma(1-s) \zeta(1-s)
+\end{equation}
+
+This example shows how closely related the Gamma function is to other functions.
+Another similar relation with the zeta function is
+\begin{equation*}
+    \zeta(z) \Gamma(z) = \int_{0}^{\infty}
+    \frac{t^{z-1}}{e^t-1} dt
+\end{equation*}
+
+\subsubsection{Other properties}
+The relationship between Beta function
+\begin{equation*}
+    \int_{0}^{1} t^{n-1} (1-t)^{m-1} dt =
+    \frac{\Gamma(n) \Gamma(m)}{\Gamma(n+m)}
+\end{equation*}
+
+Use $t=sin^2{\theta}$ for convenience, we have
+\begin{equation*}
+    \int_{0}^{\frac{\pi}{2}} cos^{2n-1}(\theta) sin^{2m-1}(\theta) d\theta =
+    \frac{\Gamma(n) \Gamma(m)}{2 \Gamma(n+m)}
+\end{equation*}
+
+When $n \in \mathcal{N}$, we have
+\begin{align*}
+    \Gamma(n)           & = (n-1)!                                 \\
+    \Gamma(\frac{n}{2}) & = \sqrt{\pi} \frac{(n-2)!!}{2^{(n-1)/2}}
+\end{align*}
+where $!!$ denotes the operator of double factorial \footnote{\url{https://math.wikia.org/wiki/Double_factorial}}.
+
+\subsection{Sterling's formula}
+In short version, the sterling's formula gives an expression of $n!$
+\begin{equation}
+    \label{Equation: Sterling's formula}
+    n! = n^n e^{-n} \sqrt{2 \pi n} [1 + \mathcal{O}(\frac{1}{n})]
+\end{equation}
+
+\begin{proof}
+    \label{Proof: Sterling's formula}
+    Proof the Sterling's formula
+    \begin{equation*}
+        n! = n^n e^{-n} \sqrt{2 \pi n} [1 + \mathcal{O}(\frac{1}{n})]
+    \end{equation*}
+
+    Formulate new formula based on Gamma function
+    \begin{equation*}
+        f(x) = \frac{\Gamma(x) e^x \sqrt{x}}{x^x} =
+        2 \int_{0}^{\infty} e^{x-u^2} (\frac{u}{\sqrt{x}})^{2x-1} du
+    \end{equation*}
+
+    Changing variables $u=\sqrt{x}+v$
+    \begin{equation*}
+        f(x) = 2 \int_{-\sqrt{x}}^{\infty} \phi_x(v) e^{-v^2} dv
+    \end{equation*}
+    where $\phi_x(v) = e^{-2vx^{1/2}} (1+\frac{v}{\sqrt{x}})^{2x-1}, \forall v \geq -\sqrt{x}$.
+    Additionally, we define $\phi_x(v) = 0, \forall v < -\sqrt{x}$, one gets
+    \begin{equation*}
+        f(x) = 2 \int_{-\infty}^{\infty} \phi_x(v) e^{-v^2} dv
+    \end{equation*}
+
+    Firstly, using the series expansion
+    \begin{equation*}
+        log(1+\frac{v}{\sqrt{x}}) = \frac{v}{\sqrt{x}} - \frac{v^2}{2x} + \cdots
+    \end{equation*}
+    thus, for a fixed $v$
+    \begin{equation*}
+        log \phi_x(v) = -v^2 + \mathcal{O}(\frac{1}{\sqrt{x}}), x \rightarrow \infty
+    \end{equation*}
+    hence
+    \begin{align*}
+        \phi_x(v)                             & = e^{-v^2 + \mathcal{O}(\frac{1}{\sqrt{x}})} \\
+        \lim_{x \rightarrow \infty} \phi_x(v) & = e^{-v^2}
+    \end{align*}
+
+    Use Lebesgue dominated convergence theorem
+    we conclude
+    \begin{equation*}
+        lim_{x \rightarrow \infty} \frac{\Gamma(x) e^x \sqrt{x}}{x^x}
+        = 2 \int_{-\infty}^{\infty} e^{-2 v^2} dv
+        = \sqrt{2 \pi}
+    \end{equation*}
+    additionally, the approximation can be expressed as
+    \begin{equation*}
+        \frac{\Gamma(x) e^x \sqrt{x}}{x^x} = \sqrt{2 \pi} \cdot e^{\mathcal{O}(\frac{1}{\sqrt{x}})}
+    \end{equation*}
+
+    Use the condition of $n=x, n \in \mathcal{N}$, and $\Gamma(n) = (n-1)!$, we get
+    \begin{equation*}
+        n! = n^n e^{-n} \sqrt{2 \pi n} [1 + \mathcal{O}(\frac{1}{n})]
+    \end{equation*}
+
+    Hence proved.
+
+\end{proof}
+
+\section{Basic concepts}
+\subsection{Expectation and Variation}
+For a random variable, it follows certain distribution
+\begin{equation*}
+    x \approx p(x), \forall 0 < p(x) < 1, \int_x p(x) dx = 1
+\end{equation*}
+its expectation and variation are computed as
+\begin{align*}
+    \mathcal{E} (x) & = \int_x x \cdot p(x) dx                      \\
+    \mathcal{V} (x) & = \int_x (x-\mathcal{E}(x)) ^ 2 \cdot p(x) dx
+\end{align*}
+additionally, the variation can be computed as
+\begin{equation*}
+    \mathcal{V} (x) = \mathcal{E} (x^2) - \mathcal{E}^2 (x)
+\end{equation*}
+
 \end{document}
