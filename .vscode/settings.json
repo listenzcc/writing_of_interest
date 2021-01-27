@@ -1,0 +1,12 @@
+{
+    "python.pythonPath": "C:\\Users\\zcc\\anaconda3\\python.exe",
+    "cSpell.words": [
+        "fpath",
+        "iloc",
+        "tqdm"
+    ],
+    "python.analysis.extraPaths": [
+        "Writing_Assistance",
+        "Writing_Assistance/webServer/webServer"
+    ]
+}

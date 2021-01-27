@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta chars="utf-8" />
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        div {
+            margin: 5px;
+        }
+        
+        div#results-area {
+            height: 6in;
+            overflow-y: scroll;
+        }
+        
+        input#input-prompt {
+            width: 6in;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="slogan-area">
+        <h1>Welcome to Writing Assistance</h1>
+        <p>You are visiting at {{CurrentTime}}</p>
+    </div>
+
+    <div id="input-area">
+        <input id="input-query" type="text" oninput="query()" />
+    </div>
+
+    <div id="results-area">
+        <!-- It should be an excellent table -->
+        <table></table>
+    </div>
+
+    <div id="prompt-area">
+        <input id="input-prompt" type="text" />
+        <input id="go-to-button" type="button" value="Go" onclick="gotofunc()" />
+    </div>
+
+    <script>
+        function gotofunc() {
+            let value = document.getElementById("input-prompt").value;
+            console.log(value);
+            open(value);
+        }
+
+        function clear(dom) {
+            // Remove all children from the [dom]
+            while (dom.childElementCount > 0) {
+                dom.children[0].remove();
+            }
+        }
+
+        function json2lst(json) {
+            // Convert json into lst
+            let max = 100;
+            let lst = [];
+            for (let i in json.sentenceP) {
+                lst[lst.length] = [json.sentenceP[i], json.url[i]];
+                if (i > max) {
+                    break;
+                }
+            }
+            return lst;
+        }
+
+        function query() {
+            let value = document.getElementById("input-query").value;
+            console.log(value);
+
+            while (value.startsWith(" ")) {
+                value = value.substring(1);
+            }
+
+            while (value.endsWith(" ")) {
+                value = value.substring(0, value.length - 1);
+            }
+
+            if (value.length == 0) {
+                return 1;
+            }
+
+            clear(document.getElementById("results-area"));
+
+            let prompt = document.getElementById("input-prompt");
+
+            d3.json("query/" + value).then(function(json) {
+                console.log(json);
+                let lst = json2lst(json);
+                d3.select("#results-area")
+                    .selectAll("p")
+                    .data(lst)
+                    .enter()
+                    .append("p")
+                    .html(function(d) {
+                        return d[0];
+                    })
+                    .on("click", function(e, d) {
+                        console.log(d[1]);
+                        prompt.value = d[1];
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>
