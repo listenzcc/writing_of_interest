@@ -115,7 +115,7 @@ And they are linked based on Sterling's formula,
 \end{equation}
 See the website \footnote{\url{https://www.researchgate.net/publication/237571154_A_Very_Short_Proof_of_Stirling's_Formula}} for detail.
 
-Formally, the Normal distribution is expressed as
+Formally, the normal distribution is expressed as
 \begin{equation}
     \label{Equation: Pdf of Normal distribution}
     p(x) = \frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{(x-\mu)^2}{2 \sigma^2}}
@@ -123,10 +123,10 @@ Formally, the Normal distribution is expressed as
 where expectation $\mu = \lim_{n \rightarrow \infty} np$ and variation $\sigma^2 = \lim_{n \rightarrow \infty} npq$.
 
 \subsubsection{The Pdf of Normal Distribution}
-The Normal distribution is usually expressed as $p(x) \sim \mathcal{N}(\mu, \sigma^2)$.
+The normal distribution is usually expressed as $p(x) \sim \mathcal{N}(\mu, \sigma^2)$.
 
 \begin{proof}
-    The Pdf of Normal distribution is a pdf.
+    The Pdf of normal distribution is a pdf.
     \begin{align*}
         \int_{-\infty}^{\infty} p(x) & = 1, p(x) > 0                   \\
         p(x)                         & \sim \mathcal{N}(\mu, \sigma^2)
@@ -146,7 +146,7 @@ The expectation and variance are
 \end{align*}
 
 \begin{proof}
-    The expectation and variance of Normal distribution are $\mu$ and $\sigma^2$.
+    The expectation and variance of normal distribution are $\mu$ and $\sigma^2$.
 
     Use the definition of expectation, and variable change with $y = x - \mu$, one gets
     \begin{equation*}
@@ -154,7 +154,7 @@ The expectation and variance are
     \end{equation*}
 
     Since integrand function of $y \cdot p(y+\mu)$ is odd function,
-    and use the PDF property of Normal distribution,
+    and use the PDF property of normal distribution,
     one gets $\mathcal{E}(x) = \mu$.
 
     Use the value of $\Gamma(\frac{3}{2}) = \frac{\sqrt{\pi}}{2}$,
@@ -168,6 +168,64 @@ The expectation and variance are
 
     Hence proved.
 \end{proof}
+
+The normal distribution of $\mu = 0$ and $\sigma^2 = 1$ is known as the \emph{standard normal distribution}.
+
+\subsection{Multivariate Normal Distribution}
+
+In this section, multivariate normal distributions is described,
+it mainly answers the question of the density function of the linear combination of normal distribution variables.
+
+\textbf{Standard Multivariate Normal Distribution}
+
+The \emph{standard multivariate normal distribution} is the joint distribution of several standard normal distribution variables,
+and the variables are independent with each other.
+It says the $X$ has a standard multivariate normal distribution if its joint probability density function is
+\begin{equation}
+    \label{Equation: Standard multivariate normal distribution}
+    f_X(x) = (2 \pi)^{-K/2} e^{-x^T x / 2}
+\end{equation}
+where $X$ be a $K \times 1$ continuous random vector, $X \in \mathbb{R}^K$,
+and the elements of $X$ are \emph{independent} with each other.
+
+\textbf{Multivariate Normal Distribution in General}
+
+The \emph{multivariate normal distribution in general} is the joint distribution of several variables of normal distribution,
+the difference is the variables are not under certain constraints, like being independent with each other.
+In fact, the density function is
+\begin{equation}
+    \label{Equation: Multivariate normal distribution}
+    f_X(x) = (2 \pi)^{-K/2} |det(V)|^{-1/2}
+    e^{-1/2 (x-\mu)^T V^{-1} (x-\mu)}
+\end{equation}
+where $X \in \mathbb{R}^K$, $\mu$ and $V$ is the expectation vector and variance matrix of $X$.
+It demonstrates the fact the standard normal distribution is the special case of multivariate normal distribution.
+
+\begin{proposition}
+    \label{Proposition: Joint Density of Linear Combination}
+    Let $X \in \mathbb{R}^K$, the $\mu$ and $V$ are the expectation vector and variance matrix.
+    The density can be formulated as
+    \begin{equation*}
+        X = \mu + \Sigma Z
+    \end{equation*}
+    where $Z \in \mathbb{R}^K$ is a \emph{standard normal distribution} vector,
+    and $V = \Sigma \Sigma^T$.
+
+    \begin{proof}
+        Use the inverse of $\Sigma$
+        \begin{equation*}
+            f_X(x) = \frac{1}{|det(\Sigma)|} f_Z(\Sigma^{-1} (x - \mu))
+        \end{equation*}
+        where $Z = \Sigma^{-1} (x - \mu)$ is a \emph{standard normal distribution} vector.
+
+        It is convenience to use \eqref{Equation: Standard multivariate normal distribution}.
+
+        And the variance is computed as $V = \Sigma \Sigma^T$
+
+        Hence proved.
+    \end{proof}
+
+\end{proposition}
 
 \section{Family Members}
 There are several common distributions in the family of Normal distribution.
@@ -430,12 +488,50 @@ but the only question is the parameters being left as unknown.
 To perform valid comparison of the variables of two methods,
 the \emph{generation} of the random variables and the \emph{estimation} of the parameters should be investigated.
 Back to the question of binary comparison.
-If for each experiment trial, we can parallel apply the two methods to it, the \emph{paired t-test} method will be used.
+If for each experiment trial, we can apply the two methods to it in parallel, the \emph{paired t-test} method will be used.
 If we can only apply the method on a trial once, the \emph{un-paired t-test} method will be used.
 
-\subsubsection{Paired T-test}
+\textbf{Paired T-test}
 
-\subsubsection{Un-paired T-test}
+Thinking of an experiment of several trials, the aim is to test whether there is significant difference between two methods.
+The methods are applied to every trial in parallel.
+The outputs of the two methods are subtracted to generate the obtained random variables.
+
+We assume the random variables are in the student's t distribution.
+And the parameters are defined as the prior knowledge.
+Naturally, the average of the obtained value refers to a position in the distribution.
+As the result, the p-value of the position refers the possibility of the obtained value happens according to the distribution with the prior knowledge.
+
+If the p-value is \emph{small enough}, we can reject the prior assumption reasonable.
+In practice, a certain \emph{threshold of p-value} is used to determine whether we can call a rejection, like the well known threshold of $0.05$.
+
+In one word, we assume the substitution of the obtained values are of student's t distribution.
+If the obtained values occur at a very low possibility, we can reject the prior assumption for sure.
+That is also the main idea of \emph{hypothesis testing}.
+
+\textbf{Un-paired T-test}
+
+In a different situation, we can not apply the two methods on each experiment trials in parallel.
+Then the method of substitution can not be used.
+To overcome the problem,
+we \emph{assume} the values of two methods are of the student's t distribution with the \emph{same} parameters.
+
+Two ideas can be used to solve the hypothesis testing problem,
+\begin{itemize}
+    \item Estimate the parameters using the values of one method, testing the p-value of the other method.
+    \item Compute the substitution of the averaged values of the two methods, testing the p-value of the substitution.
+\end{itemize}
+however, the computing method is the same although the ideas are different.
+The key is to compare the substitution of the averaged values of the two methods,
+instead of compute the p-value of the substitution of every trials.
+
+Moreover, the variance of the student's t distribution is unknown in a large number of circumstances.
+The parameters can be estimated by the sample values.
+It is needed to be noted that the sample variance is the \emph{biased} estimation of the overall variance.
+The factor of $\frac{n}{n-1}$ is used to time the sample variance to estimate the overall variance.
+It also suggests that the sample variance should be smaller than the overall variance when sample size is small.
+It matches the extreme situation of sample size is $0$,
+when the sample variance is $0$ (which means it is too small), and the overall variance is positive.
 
 \subsection{Required Sample Numbers for Solid Output}
 
