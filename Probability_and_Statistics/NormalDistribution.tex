@@ -533,7 +533,48 @@ It also suggests that the sample variance should be smaller than the overall var
 It matches the extreme situation of sample size is $0$,
 when the sample variance is $0$ (which means it is too small), and the overall variance is positive.
 
-\subsection{Required Sample Numbers for Solid Output}
+\subsection{Required Sample Numbers for Experiment}
+
+There are a number of experiments are performed to uncover the ratio of samples with certain category.
+In fact, the job is to sample and observe values.
+Based on the observations, the ground truth value of the ratio is estimated.
+
+Normally, it assumes that the ratio is fixed.
+And the observations formulate the random variables following the multi-variable normal distribution.
+There are two situations:
+One is the \emph{independent situation}, it means the sampling \emph{with-replacement} is performed during the experiment;
+The Other is the \emph{dependent situation}, it refers \emph{without-replacement} sampling experiment is performed.
+The dependency refers the relationship between one random variable and another.
+For example, under with-replacement situation, the sampling process for every trial are the same since the whole set is the same.
+But, under without-replacement situation, the whole set is decreased as sampling process going on.
+As a result, the output of latter trials are affected by the pervious.
+
+Here, an example of population polling is used to demonstrate the determination of the minimum number of samples to obtain a valid estimation.
+The following description is inspired by the website paper \footnote{\url{http://dept.stat.lsa.umich.edu/~moulib/sampling.pdf}}.
+
+To have a overlook of the population as a whole.
+The population mean $\mu$ and variance $\sigma^2$ is given as
+\begin{align*}
+    \mu      & = \frac{1}{N} \sum_{i=1}^{N} x_i = \frac{1}{N} \sum_{i=1}^{m} \xi_i n_i                       \\
+    \sigma^2 & = \frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2 = \frac{1}{N} \sum_{i=1}^{m} {\xi_i}^2 n_i - \mu^2
+\end{align*}
+where $x_i$ refers the sampling variables, $\xi_i$ and $n_i$ refers available value and its count.
+We can also denote the frequency of $\xi_i$ by the probability of $p_i = n_i / N$.
+
+Let's start with the simpler case of with-replacement sampling.
+We let $X_1, X_2, \dots, X_n$ to be the $n$ obtained random variables.
+One can use the idea of $X_i$s are independent.
+The mean and variance estimation can be easily computed based on the observations
+\begin{align*}
+    \hat{\mu}      & = \frac{1}{n} \sum_{i=1}^{n} X_i                              \\
+    \hat{\sigma^2} & = \frac{1}{n-1} \mathcal{E}(\sum_{i=1}^{n} (X_i - \bar{X})^2)
+\end{align*}
+use the definition of mean and variance,
+one can conclude the $\hat{\mu}$ and $\hat{\sigma^2}$ are the unbiased estimation of the mean and variance.
+\begin{align*}
+    \mathcal{E}(\hat{\mu})      & = \mu      \\
+    \mathcal{E}(\hat{\sigma^2}) & = \sigma^2
+\end{align*}
 
 \subsection{Analysis of Variance}
 
