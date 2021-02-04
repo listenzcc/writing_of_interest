@@ -535,13 +535,60 @@ when the sample variance is $0$ (which means it is too small), and the overall v
 
 \subsection{Required Sample Numbers for Experiment}
 
-There are a number of experiments are performed to uncover the ratio of samples with certain category.
-In fact, the job is to sample and observe values.
-Based on the observations, the ground truth value of the ratio is estimated.
+There are a number of experiments are performed to determine the ground truth value of something.
+Normally, we can denote the value as a random variable of $X$.
+The population size is $N$.
+The mean and variance of the population are stable, and known as $\mu$ and $\sigma^2$.
+The experiment trials are performed as randomly sampling $n$ times from the population.
+It can be different from the sampling methods.
 
-Normally, it assumes that the ratio is fixed.
-And the observations formulate the random variables following the multi-variable normal distribution.
-There are two situations:
+One method is randomly \emph{sampling with replacement},
+the sample variance is
+\begin{equation}
+    \label{Equation: Variance of Sample Variance on With-Replacement Sampling}
+    \mathcal{V}(\bar{X}) = \frac{1}{n} \sigma^2
+\end{equation}
+the other is randomly \emph{sampling without replacement},
+the sample variance is
+\begin{equation}
+    \label{Equation: Variance of Sample Variance on Without-Replacement Sampling}
+    \mathcal{V}(\bar{X})  = \frac{1}{n} \sigma^2 \frac{N-n}{N-1}
+\end{equation}
+it shows that the without-replacement provides lower variance as $n$ increasing.
+The decreasing is monotone, from $\frac{1}{n} \sigma^2$ to $0$.
+
+Additionally,
+no matter the sampling methods we use, the expectation of the mean value is the same as $\mu$.
+
+Based on \emph{Central Limit Theorem}, a common functional is satisfied
+\begin{align*}
+    P(|\hat{\mu}-\mu| > d)                      & < \alpha \\
+    P(\frac{|\hat{\mu}-\mu|}{\hat{\sigma}} > z) & < \alpha
+\end{align*}
+where $\alpha$ refers the confidential level, $d$ refers the margin error, and $z$ refers the z-score of the $\alpha$ value to the standard normal distribution.
+And $d$ is pre-defined value, refers the reasonable (tolerable) error range of the experiment.
+And $\hat{\sigma} = \frac{d}{z}$.
+One can also see the fact that the $z$ controls the value of $\alpha$.
+
+In a simple word, we would like to restrict the error of the mean value's estimation lower than $d$ with the confidential level of $\alpha$.
+To achieve the goal, the change-able variable is $\hat{\sigma}$, the smaller it is, the better.
+It is because the smaller the $\hat{\sigma}$ is, the larger the $z$ is, and thus the smaller the $\alpha$ is to match the pre-defined level.
+
+As a result,
+because of the monotone of the sample variance,
+the way is simply to increase the sampling size of $n$, until it satisfies
+\begin{equation*}
+    \mathcal{V}(\bar{X}) = \frac{d^2}{z^2}
+\end{equation*}
+
+Finally, one can conclude the sample size has the lower bound, which is computed as
+\begin{align}
+    With-Replacement:    & \space \frac{1}{n} \sigma^2 = \frac{d^2}{z^2}                 \\
+    Without-Replacement: & \space \frac{N-n}{N-1} \frac{1}{n} \sigma^2 = \frac{d^2}{z^2}
+\end{align}
+
+Following is the brief description of how we come to the conclusion.
+Start with the two situations:
 One is the \emph{independent situation}, it means the sampling \emph{with-replacement} is performed during the experiment;
 The Other is the \emph{dependent situation}, it refers \emph{without-replacement} sampling experiment is performed.
 The dependency refers the relationship between one random variable and another.
@@ -639,10 +686,6 @@ Finally,
     \mathcal{V}(\bar{X})  = \frac{1}{n} \sigma^2 (1 - \frac{n-1}{N-1})
 \end{equation*}
 under boundary situation of $n=N$, the variance equals to the population variance.
-
-\textbf{Example}
-
-Here, an example of population polling is used to demonstrate the determination of the minimum number of samples to obtain a valid estimation.
 
 \subsection{Analysis of Variance}
 
