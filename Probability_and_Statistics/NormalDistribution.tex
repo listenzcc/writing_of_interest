@@ -549,7 +549,6 @@ For example, under with-replacement situation, the sampling process for every tr
 But, under without-replacement situation, the whole set is decreased as sampling process going on.
 As a result, the output of latter trials are affected by the pervious.
 
-Here, an example of population polling is used to demonstrate the determination of the minimum number of samples to obtain a valid estimation.
 The following description is inspired by the website paper \footnote{\url{http://dept.stat.lsa.umich.edu/~moulib/sampling.pdf}}.
 
 To have a overlook of the population as a whole.
@@ -558,23 +557,92 @@ The population mean $\mu$ and variance $\sigma^2$ is given as
     \mu      & = \frac{1}{N} \sum_{i=1}^{N} x_i = \frac{1}{N} \sum_{i=1}^{m} \xi_i n_i                       \\
     \sigma^2 & = \frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2 = \frac{1}{N} \sum_{i=1}^{m} {\xi_i}^2 n_i - \mu^2
 \end{align*}
-where $x_i$ refers the sampling variables, $\xi_i$ and $n_i$ refers available value and its count.
+where $x_i$ refers the sampling variables, $\xi_i$ and $n_i$ refers possible value of $x$ and its count.
 We can also denote the frequency of $\xi_i$ by the probability of $p_i = n_i / N$.
 
-Let's start with the simpler case of with-replacement sampling.
+\textbf{Random sampling with replacement}
+
+Let's start with the simpler case of \emph{with-replacement sampling}.
 We let $X_1, X_2, \dots, X_n$ to be the $n$ obtained random variables.
-One can use the idea of $X_i$s are independent.
+We accept the idea that $X_i$s are independent.
 The mean and variance estimation can be easily computed based on the observations
 \begin{align*}
     \hat{\mu}      & = \frac{1}{n} \sum_{i=1}^{n} X_i                              \\
     \hat{\sigma^2} & = \frac{1}{n-1} \mathcal{E}(\sum_{i=1}^{n} (X_i - \bar{X})^2)
 \end{align*}
-use the definition of mean and variance,
+
+Use the definition of mean and variance,
 one can conclude the $\hat{\mu}$ and $\hat{\sigma^2}$ are the unbiased estimation of the mean and variance.
 \begin{align*}
     \mathcal{E}(\hat{\mu})      & = \mu      \\
     \mathcal{E}(\hat{\sigma^2}) & = \sigma^2
 \end{align*}
+
+\textbf{Random sampling without replacement}
+
+Under sampling without-replacement setting, the output of latter trials are affected by the previous.
+It leads to dependency between samples.
+To estimate the mean value, it is the same as the with-replacement setting,
+\begin{equation*}
+    \hat{\mu} = \frac{1}{n} \sum_{i=1}^{n} X_i = \mu
+\end{equation*}
+
+To estimate the variance, it is a computation of the 2nd order moment of the random variable.
+The joint probability between two random variables, like $X_i$ and $X_j$, is required
+\begin{align*}
+    P(X_i=\xi_s, X_j=\xi_r) & = \frac{n_s}{N} \frac{n_r}{N-1}, s \neq r \\
+    P(X_i=\xi_s, X_j=\xi_s) & = \frac{n_s}{N} \frac{n_s-1}{N-1}
+\end{align*}
+
+It is also important to mention that the equations of the joint probability are always satisfied for every $i$ and $j$,
+as long as the random sampling process is selecting samples randomly one-by-one, without applying other restrictions.
+\begin{equation*}
+    Cov(X_i, X_j) = Cov(X_1, X_2)
+\end{equation*}
+where $1$ and $2$ are simply two constant foot note,
+in fact they can be other values,
+as long as they do not equal.
+
+The variance of averaged value of $\bar{X}$ is expressed as
+\begin{align}
+    \label{Equation: The Relationship between Variance and Covariance}
+    \mathcal{V}(\bar{X}) & = \mathcal{E}(Cov(X_i, X_j)) \\
+    \mathcal{V}(X_i)     & = Cov(X_i, X_i)
+\end{align}
+
+Then the variance of the averaged random variable is computed as
+\begin{align*}
+    \mathcal{V}({\bar{X}}) & = \frac{1}{n^2} \sum_{i, j} Cov(X_i, X_j)                                       \\
+                           & = \frac{1}{n^2} (\sum_{i=1}^{n}\mathcal{V}(X_i) + \sum_{i \neq j}Cov(X_i, X_j)) \\
+                           & = \frac{1}{n} \sigma^2 + \frac{n-1}{n} Cov(X_1, X_2)
+\end{align*}
+where $Cov(X_1, X_2) = E(X_1, X_2) - \mu^2$.
+Additionally, on boundary situation of $n=1$ or $Cov(X_i, X_j)=0$,
+the variance is as the same as the single variable situation or independent situation.
+Another interesting point is the more samples we get,
+the less variance of single variable goes into the system,
+and the more covariance is taken into account.
+
+Use the joint probability of $X_1=\xi_i$ and $X_2=\xi_j$, we have
+\begin{align*}
+    E(X_1, X_2) & = \sum_{i, j} \xi_i \xi_j p_{ij} \\
+                & = \mu^2 - \frac{1}{N-1} \sigma^2
+\end{align*}
+
+Thus,
+\begin{equation*}
+    Cov(X_1, X_2) = - \frac{1}{N-1} \sigma^2
+\end{equation*}
+
+Finally,
+\begin{equation*}
+    \mathcal{V}(\bar{X})  = \frac{1}{n} \sigma^2 (1 - \frac{n-1}{N-1})
+\end{equation*}
+under boundary situation of $n=N$, the variance equals to the population variance.
+
+\textbf{Example}
+
+Here, an example of population polling is used to demonstrate the determination of the minimum number of samples to obtain a valid estimation.
 
 \subsection{Analysis of Variance}
 
