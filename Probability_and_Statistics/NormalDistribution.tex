@@ -533,7 +533,7 @@ It also suggests that the sample variance should be smaller than the overall var
 It matches the extreme situation of sample size is $0$,
 when the sample variance is $0$ (which means it is too small), and the overall variance is positive.
 
-\subsection{Required Sample Numbers for Experiment}
+\subsection{How to Determine Sample Count}
 
 There are a number of experiments are performed to determine the ground truth value of something.
 Normally, we can denote the value as a random variable of $X$.
@@ -541,6 +541,8 @@ The population size is $N$.
 The mean and variance of the population are stable, and known as $\mu$ and $\sigma^2$.
 The experiment trials are performed as randomly sampling $n$ times from the population.
 It can be different from the sampling methods.
+
+\subsubsection{Variance of Different Sampling Methods}
 
 One method is randomly \emph{sampling with replacement},
 the sample variance is
@@ -574,6 +576,8 @@ In a simple word, we would like to restrict the error of the mean value's estima
 To achieve the goal, the change-able variable is $\hat{\sigma}$, the smaller it is, the better.
 It is because the smaller the $\hat{\sigma}$ is, the larger the $z$ is, and thus the smaller the $\alpha$ is to match the pre-defined level.
 
+\subsubsection{Lower Bound of Samples Count}
+
 As a result,
 because of the monotone of the sample variance,
 the way is simply to increase the sampling size of $n$, until it satisfies
@@ -587,7 +591,27 @@ Finally, one can conclude the sample size has the lower bound, which is computed
     Without-Replacement: & \space \frac{N-n}{N-1} \frac{1}{n} \sigma^2 = \frac{d^2}{z^2}
 \end{align}
 
+\subsubsection{Application in Population Polling}
+
+For example, the people can either agree or disagree with a proposal.
+The aim of the polling is to uncover the ratio of agreement, $p$, in the population.
+Then it is reasonable to believe the $p$ is following binominal distribution,
+whose variance is population variance which equals to $p(1-p)$.
+And the sampling process is without-replacement sampling,
+since we only ask one person for one time.
+As a result, the minimum sampling size $n$ to lower the error less than $d$ at confidential level of $z$ is
+\begin{equation*}
+    n = N \frac{z^2 \sigma^2}{d^2 (N-1) + z^2 \sigma^2}
+\end{equation*}
+where $\sigma^2 = p(1-p)$.
+It should be noted that the larger that $\sigma^2$, the more samples are needed.
+Thus, it is relatively easier (less samples are needed) to determine a large or small value of $p$,
+since its variance is smaller.
+
 Following is the brief description of how we come to the conclusion.
+
+\subsubsection{Explaining}
+
 Start with the two situations:
 One is the \emph{independent situation}, it means the sampling \emph{with-replacement} is performed during the experiment;
 The Other is the \emph{dependent situation}, it refers \emph{without-replacement} sampling experiment is performed.
@@ -686,7 +710,5 @@ Finally,
     \mathcal{V}(\bar{X})  = \frac{1}{n} \sigma^2 (1 - \frac{n-1}{N-1})
 \end{equation*}
 under boundary situation of $n=N$, the variance equals to the population variance.
-
-\subsection{Analysis of Variance}
 
 \end{document}
