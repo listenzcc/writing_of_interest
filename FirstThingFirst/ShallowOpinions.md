@@ -1,7 +1,3 @@
-# Writing of Interest
-
-For everything I want to write-down.
-
 ## Shallow Opinions
 
 ### Where to Put Useful Files
