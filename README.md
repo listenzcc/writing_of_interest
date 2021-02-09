@@ -2,6 +2,10 @@
 
 For everything I want to write-down.
 
+## First Thing First
+
+I would like to translate the section as '有一说一'.
+
 ## Shallow Opinions
 
 ### Where to Put Useful Files
