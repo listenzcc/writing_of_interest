@@ -7,7 +7,8 @@ folder = os.path.dirname(os.path.abspath(__file__))
 
 class Worker(object):
     def __init__(self):
-        self.df = pd.read_json(os.path.join(folder, '__inventory.json'))
+        self.df = pd.read_json(os.path.join(os.environ.get(
+            'SYNC', None), 'Statlect', 'contents.json'))
 
     def query(self, s, col='sentence', max_rows=100):
         '''
