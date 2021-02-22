@@ -5,10 +5,8 @@
 The **Onedrive** is great.
 
 - Security
-- Hands-off sync
-- Available for everywhere
-- Good speed
-- **5Gb is TOO SMALL**
+- Hands-off sync in good speed
+- But, **5Gb is TOO SMALL**
 
 You can put the **SMALL** files in there,
 as they can be accessed easily when you are travelling around.
@@ -16,10 +14,13 @@ as they can be accessed easily when you are travelling around.
 The other option is customized **SYNC** folder,
 used for the dataset containing **BIG** or **TOO MANY** files.
 
-- The size can be large
-- The files can be restored in moveable disks
-- The data can be self-organized and self-explained,
+- The files can be too large or too many
+- The files can be saved in moveable disks
+- The files can be private,
+  if one does not want to share it
+- The data is self-organized and self-explained,
   and it is naturally separated from the code using it.
+- But, **there is NO VERSION CONTROL or AUTO SYNC for it**
 
 ### Better Practice of If Block
 
@@ -83,3 +84,14 @@ The first thing of an editor is its power of analysis the code.
 
 The naming of the variables has been underestimated for a long time.
 **I have not figured out how to do that properly.**
+
+My current plan is,
+taking 'my current opinion' for example
+
+| Name           | Example            | Description                       |
+| -------------- | ------------------ | --------------------------------- |
+| Human Readable | my current opinion | Naming folder or file in OS       |
+| Python         | my_current_opinion | Naming variable in python         |
+| Python         | MyCurrentOpinion   | Naming class or package in python |
+| JavaScript     | myCurrentOpinion   | Naming variable in JS             |
+| HTML           | my-current-opinion | Naming id or class name in HTML   |
