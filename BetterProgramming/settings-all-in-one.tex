@@ -1,0 +1,42 @@
+% -------------------------------------------------
+% Document class
+\documentclass[a4paper]{article}
+
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{color}
+
+% 用来设置附录中代码的样式
+
+\lstset{
+    basicstyle=\tt,
+    keywordstyle=\color{purple}\bfseries,
+    identifierstyle=\color{brown!80!black},
+    commentstyle=\color{gray},
+    showstringspaces=false,
+    frame=tb,
+    flexiblecolumns,
+    numbers=left,
+    breaklines=true,
+}
+
+\lstdefinestyle{Python}{
+    language=Python,
+    columns=fixed,
+    basewidth=0.5em,
+}
+
+\lstdefinelanguage{JavaScript}{
+    keywords={break, case, catch, continue, debugger, default, delete, do, else, finally, for, function, if, in, instanceof, new, return, switch, this, throw, try, typeof, var, void, while, with},
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]',
+    morestring=[b]",
+    sensitive=true
+}
+
+\lstdefinestyle{JavaScript}{
+    language=JavaScript,
+    columns=fixed,
+    basewidth=0.5em,
+}

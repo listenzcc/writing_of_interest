@@ -1,0 +1,89 @@
+\input{settings-all-in-one}
+
+\title{Better Programming}
+\author{Chuncheng Zhang}
+
+\begin{document}
+
+\maketitle
+
+\abstract
+Every one has \emph{computer}.
+It computes at a very high speed.
+Basically, you put your data in \emph{objects}, and generate \emph{functions} to do the computation.
+The \emph{languages} are the communication between you and the computer.
+And the \emph{algorithms} are the tools of how to do the computation precisely and quickly.
+A good \emph{programming} is about all of the above,
+you have to manage them, like the arm controls the hand.
+
+\tableofcontents
+
+\newpage
+\section{Computer}
+
+The computer is PC or laptop in real-world.
+But in programming, the computer can be a very \emph{abstraction} concept.
+\begin{itemize}
+    \item Input \\ Used for user input
+    \item Output \\ Used for output to screen or speaker
+    \item Memory \\ Where the variables stay during computing
+    \item Disk \\ Where the files stay forever
+\end{itemize}
+
+\subsection{Input \& Output}
+
+The input and output are concepts between the computer and users.
+Input means message from user to computer, and output means the reverse.
+They are applied in different syntax in different language.
+Take \emph{Python} and \emph{JavaScript} for examples.
+
+\lstinputlisting[
+    style       =   Python,
+    caption     =   {\bf InputOutput.py},
+    label       =   {InputOutput.py}
+]{./src/Computer/InputOutput.py}
+
+\lstinputlisting[
+    style       =   JavaScript,
+    caption     =   {\bf InputOutput.js},
+    label       =   {InputOutput.js}
+]{./src/Computer/InputOutput.js}
+
+\subsection{Memory}
+
+When you practice programming,
+all the variables, functions and objects in your code is in the memory.
+More about memory can be found in the section of Objects.
+In current stage,
+all you have to know is everything you do during your programming is in the memory.
+In another word,
+the computation equals to the operation to the memory.
+
+\subsection{Disk}
+
+After computing,
+users may have their stuff to be stored forever.
+The disk is where to put them.
+
+It should be noticed that it can be very different between the things in memory and their storage in disk.
+For example, an article is structured as a characters array in the memory.
+However, it is stored as a highly compressed binary series in the disk.
+Although the difference between the two formats,
+they are the same article in fact.
+
+At the viewpoint of the memory,
+there are fine programs to save the data to and read the data from the disk.
+In ideal condition,
+The two-way process is \emph{transparent} to the user,
+which it frees the users to think about the conversion,
+thus the users can focus on the object in memory during computation.
+
+\section{Objects}
+
+\section{Functions}
+
+\section{Languages}
+
+\section{Algorithms}
+
+\end{document}
