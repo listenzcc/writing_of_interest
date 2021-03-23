@@ -23,6 +23,7 @@ you have to manage them, like the arm controls the hand.
 
 The computer is PC or laptop in real-world.
 But in programming, the computer can be a very \emph{abstraction} concept.
+Four components are necessary:
 \begin{itemize}
     \item Input \\ Used for user input
     \item Output \\ Used for output to screen or speaker
@@ -32,20 +33,20 @@ But in programming, the computer can be a very \emph{abstraction} concept.
 
 \subsection{Input \& Output}
 
-The input and output are concepts between the computer and users.
+The input and output are the interfaces between the computer and users.
 Input means message from user to computer, and output means the reverse.
 They are applied in different syntax in different language.
 Take \emph{Python} and \emph{JavaScript} for examples.
 
 \lstinputlisting[
     style       =   Python,
-    caption     =   {\bf InputOutput.py},
+    caption     =   {InputOutput.py},
     label       =   {InputOutput.py}
 ]{./src/Computer/InputOutput.py}
 
 \lstinputlisting[
     style       =   JavaScript,
-    caption     =   {\bf InputOutput.js},
+    caption     =   {InputOutput.js},
     label       =   {InputOutput.js}
 ]{./src/Computer/InputOutput.js}
 
@@ -53,11 +54,11 @@ Take \emph{Python} and \emph{JavaScript} for examples.
 
 When you practice programming,
 all the variables, functions and objects in your code is in the memory.
-More about memory can be found in the section of Objects.
-In current stage,
-all you have to know is everything you do during your programming is in the memory.
 In another word,
 the computation equals to the operation to the memory.
+More about memory can be found in the section of Objects.
+In current stage,
+all you need to know is everything you program is in the memory.
 
 \subsection{Disk}
 
@@ -79,6 +80,50 @@ which it frees the users to think about the conversion,
 thus the users can focus on the object in memory during computation.
 
 \section{Objects}
+
+The object is an overall calling to the things of interest.
+It can be a number, character, string, list or set.
+Moreover, it can even be a collection of them.
+
+When you are thinking about a object,
+you are actually summarizing its features in the mind.
+But the computer works in the real world.
+That is a large separation.
+\emph{In the abstraction level},
+the object is the summary of features.
+\emph{And in the concrete level},
+the object is an instance of features.
+The gap causes several problems.
+
+\subsection{Example of precision}
+
+Basically, a number has two features, the value and the precision.
+In abstraction level, $100/3$ is an existing number.
+However, in the real world, the computer can not represent it with infinite precision.
+As a result, every time you put your hand to it in the program,
+it shows as the given precision,
+and the output value can be different.
+
+\lstinputlisting[
+    style       =   JavaScript,
+    caption     =   {Precision.js},
+    label       =   {Precision.js}
+]{./src/Objects/Precision.js}
+
+Fortunately, the \emph{float} precision is far beyond to meet the standard of daily usage.
+Evenly, in modern programming language, like JavaScript and Python,
+the precision can be intelligent assigned to the variables without causing problems in most cases,
+which is largely convenience to the users.
+
+\subsection{Example of properties}
+
+The other issue is generating the custom object with features of interest.
+
+\lstinputlisting[
+    style       =   JavaScript,
+    caption     =   {Property.js},
+    label       =   {Property.js}
+]{./src/Objects/Property.js}
 
 \section{Functions}
 
