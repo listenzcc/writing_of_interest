@@ -95,7 +95,7 @@ the object is the summary of features.
 the object is an instance of features.
 The gap causes several problems.
 
-\subsection{Example of precision}
+\subsection{Effect of precision}
 
 Basically, a number has two features, the value and the precision.
 In abstraction level, $100/3$ is an existing number.
@@ -115,15 +115,52 @@ Evenly, in modern programming language, like JavaScript and Python,
 the precision can be intelligent assigned to the variables without causing problems in most cases,
 which is largely convenience to the users.
 
-\subsection{Example of properties}
+\subsection{Array \& Dict}
 
-The other issue is generating the custom object with features of interest.
+The array and dict are both ordered series in our mind.
+Let's take an scoring list for example.
 
 \lstinputlisting[
     style       =   JavaScript,
-    caption     =   {Property.js},
-    label       =   {Property.js}
-]{./src/Objects/Property.js}
+    caption     =   {Score.js},
+    label       =   {Score.js}
+]{./src/Objects/Score.js}
+
+The obj is a array of scores,
+and its threshold member is a dict.
+As it writes,
+one can tell the discrete score based on the raw score value using the threshold table.
+Are they the same in a computer?
+absolutely NO.
+The problem is how they are different.
+
+An array is a list of something, like numbers, that linked one-by-one.
+One can think of it as a chain,
+the nodes are the numbers.
+And a dict is somehow like the array,
+but each element is a pair of key and value.
+We can think the array is the special version of dict,
+the array's key is natural numbers, from 0 to its length.
+
+It is almost the simplest data structure in the computer.
+The advantage is memory saving and easy to access to certain position,
+and the pitfall is it can be slow for query the certain value.
+
+\lstinputlisting[
+    style       =   Javascript,
+    caption     =   {Array.js},
+    label       =   {Array.js}
+]{./src/Objects/Array.js}
+
+The code describes the thing.
+On an array,
+users can easily access to certain position with one operation;
+However,
+it can be time consuming to find out if certain value exists.
+No one wants to wait almost forever to just find out some value using computer,
+then the question is how to speed up the query?
+
+\subsection{Stack \& Heap}
 
 \section{Functions}
 

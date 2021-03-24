@@ -1,9 +1,10 @@
 /*
-File: Property.js
-Aim: Example of Property
+File: Score.js
+Aim: Example of the scoring object
 */
 
-// We think the obj is the collection of scores
+// We think the obj is the collection of scores.
+// It records the raw scores and knows how to convert them into discrete scores.
 
 // The raw scores
 let obj = [79, 54, 80, 90];
