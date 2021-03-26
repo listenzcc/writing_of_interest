@@ -54,15 +54,13 @@ Take \emph{Python} and \emph{JavaScript} for examples.
 
 When you practice programming,
 all the variables, functions and objects in your code is in the memory.
-In another word,
-the computation equals to the operation to the memory.
+In another word, the computation equals to the operation to the memory.
 More about memory can be found in the section of Objects.
-In current stage,
-all you need to know is everything you program is in the memory.
+In current stage, all you need to know is everything you program is in the memory.
 
 \subsection{Disk}
 
-After computing,
+When computing is finished,
 users may have their stuff to be stored forever.
 The disk is where to put them.
 
@@ -72,10 +70,8 @@ However, it is stored as a highly compressed binary series in the disk.
 Although the difference between the two formats,
 they are the same article in fact.
 
-At the viewpoint of the memory,
-there are fine programs to save the data to and read the data from the disk.
-In ideal condition,
-The two-way process is \emph{transparent} to the user,
+At the viewpoint of the memory, there are fine programs to save the data to and read the data from the disk.
+In ideal condition, the two-way process is \emph{transparent} to the user,
 which it frees the users to think about the conversion,
 thus the users can focus on the object in memory during computation.
 
@@ -89,10 +85,10 @@ When you are thinking about a object,
 you are actually summarizing its features in the mind.
 But the computer works in the real world.
 That is a large separation.
-\emph{In the abstraction level},
-the object is the summary of features.
-\emph{And in the concrete level},
-the object is an instance of features.
+\begin{quote}
+    \emph{In the abstraction level}, the object is the summary of features.
+    \emph{And in the concrete level}, the object is an instance of features.
+\end{quote}
 The gap causes several problems.
 
 \subsection{Effect of precision}
@@ -101,8 +97,7 @@ Basically, a number has two features, the value and the precision.
 In abstraction level, $100/3$ is an existing number.
 However, in the real world, the computer can not represent it with infinite precision.
 As a result, every time you put your hand to it in the program,
-it shows as the given precision,
-and the output value can be different.
+it shows as the given precision, and the output value can be different.
 
 \lstinputlisting[
     style       =   JavaScript,
@@ -115,10 +110,28 @@ Evenly, in modern programming language, like JavaScript and Python,
 the precision can be intelligent assigned to the variables without causing problems in most cases,
 which is largely convenience to the users.
 
-\subsection{Array \& Dict}
+The effect of precision is only a small piece of the difference between the object in your mind and its instance in your computer.
+Keep it in your mind when practicing the programming, and it will save your from lots of unnecessary troubles.
 
-The array and dict are both ordered series in our mind.
-Let's take an scoring list for example.
+\subsection{Data Organization}
+
+Before you do anything with your computer,
+you need to understand the organization of data,
+since it may be too large to look at and place them one-by-one.
+Moreover, the data can be arbitrary on the using end.
+A good program is designed to deal with different values and sizes in the given data structure.
+As a result, the first thing of programming is in two folder:
+\begin{itemize}
+    \item Decide how to organize the data;
+    \item Estimate how long the operation will take at typical situation.
+\end{itemize}
+Does it look like two things?
+Yes, but actually No.
+I believe it is one thing with the name of \emph{Data Structure}.
+
+\subsubsection{Example of Scoring}
+
+Think of a simple program to score the kids with their raw scores.
 
 \lstinputlisting[
     style       =   JavaScript,
@@ -126,22 +139,17 @@ Let's take an scoring list for example.
     label       =   {Score.js}
 ]{./src/Objects/Score.js}
 
-The obj is a array of scores,
-and its threshold member is a dict.
-As it writes,
-one can tell the discrete score based on the raw score value using the threshold table.
-Are they the same in a computer?
-absolutely NO.
-The problem is how they are different.
+The script can be used to generate discrete scores based on the raw scores.
+As it writes, one can tell the discrete score based on the raw score value using the threshold table.
+It is quite short and simple.
+But it contains two classic data structures, the coder can solve more than 80\% computation problems with them.
+They are \emph{chain list} and \emph{hash table}.
 
-An array is a list of something, like numbers, that linked one-by-one.
-One can think of it as a chain,
-the nodes are the numbers.
-And a dict is somehow like the array,
-but each element is a pair of key and value.
-We can think the array is the special version of dict,
-the array's key is natural numbers, from 0 to its length.
+\subsubsection{Chain List}
 
+A chain list contains countless nodes,
+the length can be very large.
+They are linked one after another like the nodes in a chain.
 It is almost the simplest data structure in the computer.
 The advantage is memory saving and easy to access to certain position,
 and the pitfall is it can be slow for query the certain value.
@@ -153,12 +161,88 @@ and the pitfall is it can be slow for query the certain value.
 ]{./src/Objects/Array.js}
 
 The code describes the thing.
-On an array,
-users can easily access to certain position with one operation;
-However,
-it can be time consuming to find out if certain value exists.
-No one wants to wait almost forever to just find out some value using computer,
-then the question is how to speed up the query?
+It can be time consuming to find out if certain value exists.
+Commonly, it will find it after too many operations or report it can not be found in the list.
+At the worst condition, the computer has to check every node in the chain list to find the given value.
+As a result, the expectation of the time consuming is
+\begin{equation}
+    \label{Eq: cc-o1}
+    \mathcal{O}(n)
+\end{equation}
+where $n$ refers the length of the chain list.
+It is a common notion of time consuming estimation in the field of \emph{computational complexity}.
+
+\begin{quote}
+    Computational complexity!
+    As we know, Computation is the process of calculating something by mathematical or logical methods.
+    Execution of an algorithm is a well-known example of computation.
+    In order to perform any sort of computation, we will need energy.
+    This energy can be directly related to the resources that we spend to perform computation.
+
+    \flushright{\textit{Data from: Wikipedia}}
+\end{quote}
+
+It refers the time consuming can be estimated by $n$
+\begin{equation*}
+    \mathcal{E}(t) \propto f(n) + c
+\end{equation*}
+where $f(\cdot)$ refers a linear function, and $c$ is constant independent with $n$.
+As a result, when the $n$ is too large, the program may use up countless computation times.
+
+No one wants to wait almost forever to just find out some value.
+The question is how to speed up the process?
+The hash table is one solution.
+
+\subsubsection{Hash Table}
+
+The thresholds in Listing \ref{Score.js} is a hash table.
+As it writes, the elements in the hash table has two factors:
+\begin{itemize}
+    \item Key: The unique key to access the record;
+    \item Value: The value belonging to the key.
+\end{itemize}
+The hash table is used for quickly access to the value by certain key.
+
+The idea of hash table is to use its hash value to identify the key and thus find its value.
+Since the key's location is computed rather than searched by exhaustively search
+\footnote{
+    Exhaustively search: Including or considering all elements or aspects; fully comprehensive.
+    Like search one-by-one in a chain list.
+}.
+The process can be expressed as
+\begin{align*}
+    h & = \mathbb{H} (key) \\
+    i & = \mathbb{L}_n (h)
+\end{align*}
+where $\mathbb{H}$ is hash function to compute the hash value
+\footnote{
+    Hash value is usually a string.
+},
+and $\mathbb{L}_n$ is projection function to compute its location $i$ in the $n$ sized hash table.
+A qualified hash system of $(\mathbb{H}, \mathbb{L}_n$ can map the keys into the hash table evenly.
+That says the keys will be located to $n$ locations with equal probability.
+
+Using the hash method, the key-value pairs are separated evenly into the $n$ length hash table.
+When query a key, the program only has to compute its hash value and find it from the location.
+Assume there $m$ pairs in the hash table, the computation complexity is
+\begin{equation}
+    \label{Eq: cc-o2}
+    \mathcal{O}(\frac{m}{n})
+\end{equation}
+The computation is because the exhaustively search process only has to deal with the list with length of $\frac{m}{n}$ in ideal condition
+\footnote{
+    Ideal refers the hash function is qualified.
+}.
+As a result, the hash table is commonly used for storage large data for arbitrary query.
+
+Below is an example for explanation.
+
+\lstinputlisting[
+    style       =   Javascript,
+    caption     =   {HashTable.js},
+    label       =   {HashTable.js}
+]{./src/Objects/HashTable.js}
+
 
 \subsection{Stack \& Heap}
 
@@ -167,5 +251,9 @@ then the question is how to speed up the query?
 \section{Languages}
 
 \section{Algorithms}
+
+\appendix
+
+\section{Computation Complexity}
 
 \end{document}
