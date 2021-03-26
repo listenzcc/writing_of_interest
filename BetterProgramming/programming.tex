@@ -91,8 +91,6 @@ That is a large separation.
 \end{quote}
 The gap causes several problems.
 
-\subsection{Effect of precision}
-
 Basically, a number has two features, the value and the precision.
 In abstraction level, $100/3$ is an existing number.
 However, in the real world, the computer can not represent it with infinite precision.
@@ -127,9 +125,8 @@ As a result, the first thing of programming is in two folder:
 \end{itemize}
 Does it look like two things?
 Yes, but actually No.
-I believe it is one thing with the name of \emph{Data Structure}.
-
-\subsubsection{Example of Scoring}
+I believe they are from one thing with the name of \emph{Data Structure}.
+Before actually enter into the field of data structure, the data organization is easier to understand.
 
 Think of a simple program to score the kids with their raw scores.
 
@@ -243,8 +240,32 @@ Below is an example for explanation.
     label       =   {HashTable.js}
 ]{./src/Objects/HashTable.js}
 
+\subsubsection{Conclusion}
 
-\subsection{Stack \& Heap}
+The chain list or hash table are two common structures.
+The chain list is simple and memory save.
+It is commonly used for the circumstances that users are only concern to enumerate the values but not query certain value.
+The hash table is more complex with the hash function.
+It is more suitable for the circumstances that it is necessary for query arbitrary keys.
+The speed up for the query is several times depending on the size of hash table.
+It shows the chosen of data structure may largely affect the performance of the program.
+As a result, the data structure research is to develop better structure for certain circumstances.
+
+\subsection{Data Structure}
+
+There are huge number of customized data structure.
+They can be classified into two main classes
+\begin{itemize}
+    \item Stack: One dimensional ordered list;
+    \item Heap: Other than stack, mostly likes a tree.
+\end{itemize}
+Since the data structure is goal driven, the combine of the different structures is most used.
+For example, the hash table in Listing \ref{HashTable.js} is a combination of heap and stack.
+The outer table is a heap, and its inner elements are stacks.
+
+\subsubsection{Stack}
+
+\subsubsection{Heap}
 
 \section{Functions}
 
