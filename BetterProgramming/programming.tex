@@ -265,15 +265,85 @@ The outer table is a stack, and its inner elements are also stacks.
 Meanwhile, the two level stack structure is also an untypical heap.
 So, we will review the stack and heap respectively in the following,
 in practice, there is not clear separation between them.
-\quote{
-    Welcome to the art of programming.
-
-    Feel at home and help yourself.
-}
 
 \subsubsection{Stack}
 
+Typically, the stack is a chain of elements with one dimension.
+
+\textbf{Definition}
+We think the elements in the stack as the nodes
+\begin{equation}
+    \label{Eq: Node in stack}
+    Node \rightarrow \{e| (e.value, *e.next)\}
+\end{equation}
+where $e.value$ is the value of interest, $*e.next$ is the point pointing to the next node.
+As a result, one can always iterate over all the elements from the first to the second and so on until it reaches to the end.
+
+\textbf{Property}
+The stack is a tube with the width only fit for one ball.
+The tube has only one open end at its head, the other end is sealed.
+For moving in, the ball is inserted and go forwardly until it reaches the latest.
+For moving out, the latest ball move out firstly, and then the next and so on.
+Thus, the stack is an ordered storage with first-in-last-out (FILO) manner.
+
+\textbf{Definition}
+When first-in-first-out manner is required, we need to extend the elements in the stack.
+\begin{equation}
+    \label{Eq: Node in stack extension}
+    Node \rightarrow \{e| (e.value, *e.before, *e.after)\}
+\end{equation}
+where $*e.before$ / $*e.after$ is the point pointing to the element before / after to it.
+
+\textbf{Property}
+Using the two-way pointing extension, we open the both ends of the tube.
+Then the two ends are separated, one for entrance, and the other for exit only.
+As a result, for moving out, we can start from the first ball, and to its next, and so on.
+It is the FIFO staking order.
+
+\textbf{Sorting}
+If the order of the elements being inserted is not of interesting, we always want the stack to be well-ordered.
+In another word, we need the elements to be ascending or descending monotone.
+Huge amount sorting algorithms have been developed
+
+\begin{table}[htb]
+    \centering
+    \caption{Time Complexities of Sorting Algorithms}
+    \label{Tab: Time Complexities of Sorting Algorithms}
+    \begin{tabular}{l|c}
+        \hline
+        \textbf{Algorithm} & \textbf{Average Running Time} \footnotemark[1] \\
+        \hline
+        Insert Sort        & $ \mathcal{O}(n^2)     $                       \\
+        Bubble Sort        & $ \mathcal{O}(n^2)     $                       \\
+        Selection Sort     & $ \mathcal{O}(n^2)     $                       \\
+        Quick Sort         & $ \mathcal{O}(n \cdot log(n)) $                \\
+        Merge Sort         & $ \mathcal{O}(n \cdot log(n)) $                \\
+        Heap Sort          & $ \mathcal{O}(n \cdot log(n)) $                \\
+        \hline
+    \end{tabular}
+
+    \footnotetext[1] 01. The time is the expectation value, the value is only for estimating the performance under "normal" conditions
+\end{table}
+
+The methods can use to sort the elements.
+Although the time costing may change in practice, the expectation can be estimated.
+The table shows the faster method costs $n \cdot log(n)$ operations and the slower method costs $n ^ 2$ operations.
+And the difference between methods can be as large as $n / log(n)$ times.
+If you look closer, you will find out the fact that
+The different sorting algorithms reach their best performance under different situations.
+So, choosing the qualified algorithm for your application is necessary for programming.
+
+Another interesting thing in the table is the heap sorting.
+It sorts the elements by building a heap, another common data structure.
+
 \subsubsection{Heap}
+
+To be continued.
+\textbf{Definition}
+
+\textbf{Property}
+
+\textbf{Example}
 
 \section{Functions}
 
